@@ -1,0 +1,16 @@
+body {
+  background-color: #9aa7dc;
+}
+
+.lobby-wrap {
+  background-color: #485084;
+}
+
+.lobby {
+  background-color: #384374;
+}
+
+.game-card {
+  background-color: #485183;
+  color: #ffffff;
+}

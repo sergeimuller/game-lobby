@@ -5,6 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
+window.HELP_IMPROVE_VIDEOJS = false;
+
 const queryClient = new QueryClient();
 
 ReactDOM.render(
