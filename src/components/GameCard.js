@@ -1,12 +1,14 @@
-import { VideoPreview } from './VideoPreview';
+//import { VideoPreview } from './VideoPreview';
+import { useContext } from 'react';
 import { IoHeartOutline, IoHeart } from 'react-icons/io5';
+import { ModalContext } from '../context/modalContext';
+import { GameModal } from './GameModal';
 
 export function GameCard(props) {
   const {
-    id,
-    game: { name: gameTitle, description, thumb3, thumb4, thumb5, youtube }
+    game: { name: gameTitle, description, thumb3, thumb4, thumb5 /* youtube */ }
   } = props;
-
+  const { handleModal } = useContext(ModalContext);
   const imagePreview = thumb5 || thumb4 || thumb3;
 
   return (
@@ -35,6 +37,12 @@ export function GameCard(props) {
       </div>
       <footer className="flex flex-grow flex-col w-full self-end justify-end leading-none px-2 md:px-4 mb-4 bg-green">
         <IoHeartOutline />
+        <button
+          className="mt-6 rounded  bg-purple-700 text-purple-100 px-5 h-12"
+          onClick={() => handleModal(<GameModal />)}
+        >
+          Open Game
+        </button>
       </footer>
     </article>
   );

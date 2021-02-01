@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ModalProvider } from './context/modalContext';
 
 window.HELP_IMPROVE_VIDEOJS = false;
 
@@ -12,7 +13,9 @@ const queryClient = new QueryClient();
 ReactDOM.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <App />
+      <ModalProvider>
+        <App />
+      </ModalProvider>
     </QueryClientProvider>
   </React.StrictMode>,
   document.getElementById('root')

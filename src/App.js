@@ -21,7 +21,7 @@ function App() {
 
   if (isLoading) return 'Loading...';
   if (error) return `An error has occurred: ${error.message}`;
-  console.log({ featuredGames, games });
+
   return (
     <div className="py-4 font-sans antialiased text-gray-900">
       <div className="max-w-7xl mx-auto p-4 rounded-3xl lobby-wrap">
