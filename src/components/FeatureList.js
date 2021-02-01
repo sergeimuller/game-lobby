@@ -1,33 +1,42 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { ModalContext } from '../context/modalContext';
+import { GameModal } from './GameModal';
 
 export function FeatureList({ featuredGames }) {
   const [activeGame, setActiveGame] = useState(0);
+  const { handleModal } = useContext(ModalContext);
   if (!featuredGames) return null;
   const { name: gameTitle, thumb5, thumb4, thumb3, description } = featuredGames[activeGame];
   const imagePreview = thumb5 || thumb4 || thumb3;
 
   return (
-    <div className="grid grid-cols-1 gap-6 mb-12">
-      <div
-        className="relative rounded-lg block md:flex items-center bg-gray-100 shadow-xl"
-        style={{ minHeight: '19rem' }}
-      >
-        <div
-          className="relative w-full md:w-2/5 h-full overflow-hidden rounded-t-lg md:rounded-t-none md:rounded-l-lg"
-          style={{ minHeight: '19rem' }}
-        >
+    <div className="grid grid-cols-1 gap-6 mb-6">
+      <div className="relative rounded-lg block md:flex items-center bg-gray-100 shadow-xl">
+        <div className="relative md:w-2/5 w-full h-60 md:h-full  overflow-hidden rounded-t-lg md:rounded-t-none md:rounded-l-lg">
           <img
             className="absolute inset-0 w-full h-full object-cover object-center"
             src={imagePreview}
             alt=""
           />
         </div>
-        <div className="w-full md:w-3/5 h-full flex items-center bg-gray-100 rounded-lg">
-          <div className="p-12 md:pr-24 md:pl-16 md:py-12 w-full">
+        <div className="w-full md:w-3/5 md:h-full flex items-center bg-gray-100 rounded-lg">
+          <div className="p-4 md:pr-24 md:pl-16 md:py-12 w-full">
             <h2 className="group flex whitespace-pre-wrap font-bold text-2xl mb-4">{gameTitle}</h2>
             <p className="text-gray-600">
               <span className="text-gray-900">{description}</span>
             </p>
+            <button
+              className="mt-6 rounded bg-purple-700 text-purple-100 text-sm font-semibold  px-2 h-8"
+              onClick={() =>
+                handleModal(
+                  <GameModal
+                    game={{ ...featuredGames[activeGame], id: activeGame, imagePreview }}
+                  />
+                )
+              }
+            >
+              Open {gameTitle}
+            </button>
             <FeatureButtons
               games={featuredGames}
               currentItem={activeGame}
@@ -85,7 +94,6 @@ function FeatureButtons({ games, currentItem, onClick }) {
 }
 
 function FeatureNavigation(props) {
-  console.log(props);
   const { currentItem, navLength, onClick } = props;
 
   function handleNextItem() {
