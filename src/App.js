@@ -4,6 +4,8 @@ import { useQuery } from 'react-query';
 import { getFeaturedGames } from './utils/getFeaturedGames';
 import { GameList } from './components/GameList';
 import { FeatureList } from './components/FeatureList';
+import { Loading } from './components/Loading';
+import { Error } from './components/Error';
 
 function App() {
   const [featuredGames, setFeaturedGames] = useState();
@@ -19,8 +21,8 @@ function App() {
     setGames(otherGames);
   }, [data]);
 
-  if (isLoading) return 'Loading...';
-  if (error) return `An error has occurred: ${error.message}`;
+  if (isLoading) return <Loading />;
+  if (error) return <Error message={`An error has occurred: ${error.message}`} />;
 
   return (
     <div className="py-4 font-sans antialiased text-gray-900">
