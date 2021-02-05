@@ -15,3 +15,23 @@ body {
   background-color: #485183;
   color: #ffffff;
 }
+
+.toggle-checkbox:checked {
+  right: 0;
+}
+.toggle-checkbox:checked + .toggle-label {
+  background-color: #68d391;
+}
+.page-item.active a.page-link {
+  background-color: white;
+  color: #000000;
+}
+.page-item:first-child .page-link {
+  margin-left: 0;
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+.page-item:last-child .page-link {
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
